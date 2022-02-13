@@ -1,10 +1,9 @@
  
  gcc -g p6original.c
  ./a.out
-enter the two words
+enter the string 
 anusha
-sanchi
-sanchi is greater than anusha
+anusha reversed is ahsuna
  gdb a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
 Copyright (C) 2018 Free Software Foundation, Inc.
@@ -22,64 +21,65 @@ For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
 (gdb) b main
-Breakpoint 1 at 0x8e6: file p6original.c, line 36.
+Breakpoint 1 at 0x840: file p6original.c, line 23.
 (gdb) r
 Starting program: /home/runner/ppa-IA2-practice2/a.out 
 warning: Error disabling address space randomization: Operation not permitted
 
-Breakpoint 1, main () at p6original.c:36
-36  {
+Breakpoint 1, main () at p6original.c:23
+23  {
 (gdb) n
-39      input_two_strings(a,b);
+24    printf("enter the string \n");
+(gdb) n
+enter the string 
+26    input_string(a);
 (gdb) s
-input_two_strings (a=0x7ffe6feaa41a "", b=0x7ffe6feaa429 "\006\200 )V")
-    at p6original.c:4
-4       printf("enter the two words\n");
-(gdb) n
-enter the two words
-5       scanf("%s",a);
+input_string (a=0x7ffe395bb420 "\001") at p6original.c:4
+4     scanf("%s",a);
 (gdb) n
 n
-6       scanf("%s",b);
+5   }
 (gdb) n
-n
-7   }
-(gdb) n
-main () at p6original.c:40
-40      x=strcmp(a,b);
+main () at p6original.c:27
+27    str_revers(a,r);
 (gdb) s
-strcmp (a=0x7ffe6feaa41a "n", b=0x7ffe6feaa429 "n") at p6original.c:10
-10      int w=0;
+str_revers (a=0x7ffe395bb420 "n", r=0x7ffe395bb440 "\260\b\200ۭU")
+    at p6original.c:8
+8     int x=0;
 (gdb) n
-11      for(w=0; ((a[w]!=0) || (b[w]!=0)); w++)
+9     for(int i=0;a[i]!=0;i++)
 (gdb) n
-13          if(a[w]-b[w]!=0)
+11        x=x+1;
 (gdb) n
-11      for(w=0; ((a[w]!=0) || (b[w]!=0)); w++)
+9     for(int i=0;a[i]!=0;i++)
 (gdb) n
-18      return a[w]-b[w];
+13    for(int i=0;i<x+1;i++)
 (gdb) n
-19  }
+15        r[i]=a[x-i-1];
 (gdb) n
-main () at p6original.c:41
-41      output(a,b,x);
+13    for(int i=0;i<x+1;i++)
+(gdb) n
+15        r[i]=a[x-i-1];
+(gdb) n
+13    for(int i=0;i<x+1;i++)
+(gdb) n
+17  }
+(gdb) n
+main () at p6original.c:28
+28    output(a,r);
 (gdb) s
-output (a=0x7ffe6feaa41a "n", b=0x7ffe6feaa429 "n", soln=0) at p6original.c:22
-22      if(soln>0)
+output (a=0x7ffe395bb420 "n", revers=0x7ffe395bb440 "n") at p6original.c:20
+20    printf("%s reversed is %s\n",a,revers);
 (gdb) n
-26      else if(soln<0)
+n reversed is n
+21  }
 (gdb) n
-32          printf("both the words are same\n");
+main () at p6original.c:29
+29    return 0;
 (gdb) n
-both the words are same
-34  }
-(gdb) n
-main () at p6original.c:42
-42      return(0);
-(gdb) n
-43  }(gdb) q
+30  }(gdb) q
 A debugging session is active.
 
-    Inferior 1 [process 36] will be killed.
+    Inferior 1 [process 190] will be killed.
 
 Quit anyway? (y or n) y

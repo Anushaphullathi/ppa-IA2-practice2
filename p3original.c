@@ -8,7 +8,6 @@ return n;
 }
 int is_composite(int n)
 {
-int n;
 int flag=0;
 if(n<=2){
   printf("Enter the number greater than 2");
